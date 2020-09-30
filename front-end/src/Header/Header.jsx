@@ -35,21 +35,23 @@ function Header() {
                 <Link to={!user && "/login"} className="header__link">
                     <div onClick={login} className="header__option">
                         <span className="header__optionLineOne" >Hello {user?.email} </span>
-                        <span className="optionLineTwo">Sign In</span>
+                        <span className="header__optionLineTwo">{user ? 'Sign Out' : 'Sign In'}</span>
                     </div>
                 </Link>
+
                 {/* link 2 */}
                 <Link className="header__link">
                     <div className="header__option">
-                        <span className="header__optionLineOne"> hellow me</span>
-                        <span className="optionLineTwo">{user ? 'Sign Out' : 'Sign In'}</span>
+                        <span className="header__optionLineOne"> Returns</span>
+                        <span className="header__optionLineTwo">& Order</span>
                     </div>
                 </Link>
+
                 {/* link 3 */}
                 <Link className="header__link">
                     <div className="header__option">
-                        <span className="header__optionLineOne"> hellow me</span>
-                        <span className="optionLineTwo">Sign In</span>
+                        <span className="header__optionLineOne">Your</span>
+                        <span className="header__optionLineTwo">Prime</span>
                     </div>
                 </Link>
 
