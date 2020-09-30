@@ -6,7 +6,8 @@ import Home from './Home/Home'
 import Checkout from './Checkout/Checkout'
 import Login from './Login/Login'
 import { auth } from './auth/firebase'
-import {useStateValue} from './DataLayer/StateProvider'
+import { useStateValue } from './DataLayer/StateProvider'
+import Register from './Register/Register'
 
 
 function App() {
@@ -48,7 +49,9 @@ function App() {
             <Header />
             <Home />
           </Route>
-
+          <Route path="/register">
+            <Register/>
+          </Route>
         </Switch>
       </div>
 

@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket'
 import  {useStateValue} from '../DataLayer/StateProvider'
-import { auth } from 'firebase';
+import { auth } from '../auth/firebase';
 
 function Header() {
 
@@ -13,9 +13,7 @@ function Header() {
         if(user){
             auth.signOut();
         }
-
     }
-
 
     return (
         <nav className="header">
