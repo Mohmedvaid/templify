@@ -21,17 +21,14 @@ function Login() {
         .catch((e)=> alert(e.message));
 
     }
-    const register = e => {
-        e.preventDefault();
-        auth.createUserWithEmailAndPassword(email, password)
-        .then(auth=>{
-            history.push("/")
-        })
-        .catch((e)=> alert(e.message))
-
-
-
-    }
+    // const register = e => {
+    //     e.preventDefault();
+    //     auth.createUserWithEmailAndPassword(email, password)
+    //     .then(auth=>{
+    //         history.push("/")
+    //     })
+    //     .catch((e)=> alert(e.message))
+    // }
 
     return (
         <div className="login">
@@ -48,7 +45,10 @@ function Login() {
                       <input value={password} onChange={event =>setPassword(event.target.value)} type="password"/>
                     <button onClick={login} className="login__signInButton" type="submit">Sign In</button>
                     <p>By siging in bla bla bla...</p>
-                    <button onClick={register} className="login__registerButton">Create your account</button>
+                    
+                    <Link to="/register">
+                        <button className="login__registerButton">Create your account</button>
+                    </Link>
 
                 </form>
             </div>

@@ -45,16 +45,15 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
+          <Route path="/register">
+            <Register/>
+          </Route>
           <Route path="/">
             <Header />
             <Home />
           </Route>
-          <Route path="/register">
-            <Register/>
-          </Route>
         </Switch>
       </div>
-
     </Router>
   );
 }
