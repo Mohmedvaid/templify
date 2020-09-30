@@ -1,34 +1,45 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Login.css'
 import {Link, useHistory} from 'react-router-dom'
-import { auth } from '../auth/firebase';
+import { auth, db } from '../auth/firebase';
+import { useStateValue } from '../DataLayer/StateProvider'
 
 function Login() {
     const history = useHistory();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [{ basket, user }, dispatch] = useStateValue();
+    
 
     const login = e => {
         e.preventDefault();
         auth.signInWithEmailAndPassword(email, password)
         // if all good sign in
         .then((auth)=>{
-            history.push("/")
+            history.push("/");
 
+            db.collection("users").doc(auth.user.uid).get()
+            .then((userInfo) => {
+                dispatch({
+                    type:'SET_USER',
+                    user: {
+                        ...user,
+                        First: userInfo.data().First, 
+                        Last: userInfo.data().Last
+                    }
+                })
+                // console.log('first', userInfo.data().First);
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
         })
         // else show message
         .catch((e)=> alert(e.message));
 
     }
-    // const register = e => {
-    //     e.preventDefault();
-    //     auth.createUserWithEmailAndPassword(email, password)
-    //     .then(auth=>{
-    //         history.push("/")
-    //     })
-    //     .catch((e)=> alert(e.message))
-    // }
+
 
     return (
         <div className="login">
@@ -47,7 +58,7 @@ function Login() {
                     <p>By siging in bla bla bla...</p>
                     
                     <Link to="/register">
-                        <button className="login__registerButton">Create your account</button>
+                        <button className="login__registerButton" >Create your account</button>
                     </Link>
 
                 </form>

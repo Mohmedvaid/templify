@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Register.css'
 import {Link, useHistory} from 'react-router-dom'
 import { auth, db } from '../auth/firebase';
+import { useStateValue } from '../DataLayer/StateProvider'
 
 function Register() {
 
@@ -10,16 +11,19 @@ function Register() {
     const [password, setPassword] = useState("");
     const [first, setFirst] = useState("");
     const [last, setLast] = useState("");
+    const [{ basket, user }] = useStateValue();
+
 
     const register = e => {
         e.preventDefault();
         auth.createUserWithEmailAndPassword(email, password)
-        .then(auth=>{
-            db.collection("users").doc(auth.user.uid).set({
+        .then(auth => {
+           return db.collection("users").doc(auth.user.uid).set({
                 First: first,
                 Last: last
+            }).then(()=>{
+                history.push("/");
             })
-            history.push("/");
         })
         .catch((e)=> alert(e.message))
     }
@@ -30,7 +34,7 @@ function Register() {
                 <img className="register__logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1280px-Amazon_logo.svg.png" alt="logo"/>
             </Link>
             <div className="register__container">
-                <h1>Sign In</h1>
+                <h1>Create a new account</h1>
                 <form>
                     <h5>First Name</h5>
                         <input value={first} onChange={event =>setFirst(event.target.value)}  type="text"/>
@@ -44,6 +48,12 @@ function Register() {
                     <Link to="/register">
                         <button onClick={register} className="register__registerButton">Create your account</button>
                     </Link>
+                    <div className="register__bottom">
+                        <small>or</small>
+                        <Link to="/">
+                            <p>Back to homepage</p>
+                        </Link>
+                    </div>
 
                 </form>
             </div>

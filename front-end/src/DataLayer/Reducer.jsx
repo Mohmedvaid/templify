@@ -30,7 +30,7 @@ const reducer = (state, action) => {
                 newBasket.splice(index, 1)
             }
             else {
-                console.log('cant remoce');
+                console.log('cant remove');
             }
             return {
                 ...state,

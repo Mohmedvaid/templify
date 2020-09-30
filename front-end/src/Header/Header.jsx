@@ -1,16 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./Header.css"
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket'
-import  {useStateValue} from '../DataLayer/StateProvider'
-import { auth } from '../auth/firebase';
+import { useStateValue } from '../DataLayer/StateProvider'
+import { auth, db } from '../auth/firebase';
 
 function Header() {
 
-    const [{basket, user}] = useStateValue();
+    const [{ basket, user }] = useStateValue();
     const login = () => {
-        if(user){
+        if (user) {
             auth.signOut();
         }
     }
@@ -19,12 +19,12 @@ function Header() {
         <nav className="header">
             {/* nav logo */}
             <Link to="/">
-                <img className="header__logo" src="https://mikekitko.com/wp-content/uploads/2019/10/amazon-logo-white.png" alt="amazon logo"/>  
+                <img className="header__logo" src="https://mikekitko.com/wp-content/uploads/2019/10/amazon-logo-white.png" alt="amazon logo" />
             </Link>
 
             {/* search bar */}
             <div className="header__search">
-                <input type="text" className="header__searchInput"/>
+                <input type="text" className="header__searchInput" />
                 <SearchIcon className="header__searchIcon"></SearchIcon>
             </div>
 
@@ -32,7 +32,7 @@ function Header() {
                 {/* link 1 */}
                 <Link to={!user && "/login"} className="header__link">
                     <div onClick={login} className="header__option">
-                        <span className="header__optionLineOne" >Hello {user?.email} </span>
+                        <span className="header__optionLineOne" >Hello {user?.First} </span>
                         <span className="header__optionLineTwo">{user ? 'Sign Out' : 'Sign In'}</span>
                     </div>
                 </Link>
@@ -56,8 +56,8 @@ function Header() {
                 {/* basket */}
                 <Link to="/checkout" className="header__link">
                     <div className="header__optionBasket">
-                        <ShoppingBasketIcon/>
-                          <span className="header_optionLineTwo header__basketCount">{basket?.length} </span>
+                        <ShoppingBasketIcon />
+                        <span className="header_optionLineTwo header__basketCount">{basket?.length} </span>
                     </div>
                 </Link>
             </div>
