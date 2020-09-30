@@ -11,7 +11,7 @@ function Register() {
     const [password, setPassword] = useState("");
     const [first, setFirst] = useState("");
     const [last, setLast] = useState("");
-    const [{ basket, user }] = useStateValue();
+    const [{ basket, user }, dispatch] = useStateValue();
 
 
     const register = e => {
@@ -22,6 +22,15 @@ function Register() {
                 First: first,
                 Last: last
             }).then(()=>{
+                //save user info in state 
+                dispatch({
+                    type:'SET_USER',
+                    user: {
+                        ...user,
+                        First: first, 
+                        Last: last
+                    }
+                })
                 history.push("/");
             })
         })

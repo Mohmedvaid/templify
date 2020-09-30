@@ -19,6 +19,7 @@ function Login() {
         .then((auth)=>{
             history.push("/");
 
+            // get user info from db and save in state
             db.collection("users").doc(auth.user.uid).get()
             .then((userInfo) => {
                 dispatch({
@@ -29,7 +30,6 @@ function Login() {
                         Last: userInfo.data().Last
                     }
                 })
-                // console.log('first', userInfo.data().First);
             })
             .catch((err)=>{
                 console.log(err);
