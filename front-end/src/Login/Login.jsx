@@ -43,10 +43,12 @@ function Login() {
 
     return (
         <div className="login">
+            <div className="login__logo">
             <Link to="/">
-                <img className="login__logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1280px-Amazon_logo.svg.png" alt="logo"/>
-            
+                <img className="login__logoImg" src="/logo/templify_logo_v2.svg" alt="logo"/>
             </Link>
+            </div>
+
             <div className="login__container">
                 <h1>Sign In</h1>
                 <form>

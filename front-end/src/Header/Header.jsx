@@ -19,7 +19,7 @@ function Header() {
         <nav className="header">
             {/* nav logo */}
             <Link to="/">
-                <img className="header__logo" src="https://mikekitko.com/wp-content/uploads/2019/10/amazon-logo-white.png" alt="amazon logo" />
+                <img className="header__logo" src="/logo/templify_logo_v2.svg" alt="amazon logo" />
             </Link>
 
             {/* search bar */}

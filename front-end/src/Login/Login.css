@@ -7,8 +7,17 @@
 }
 
 .login__logo{
-    margin: 20px 0;
-    width: 100px;
+    width: 100%;
+    background: #131921;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.login__logoImg{
+    margin: 5px 0;
+    width: 170px;
     object-fit: contain;
 }
 

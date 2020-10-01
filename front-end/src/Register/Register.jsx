@@ -39,9 +39,12 @@ function Register() {
 
     return (
             <div className="register">
-            <Link to="/">
-                <img className="register__logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1280px-Amazon_logo.svg.png" alt="logo"/>
-            </Link>
+                <div className="register__logo">
+                <Link to="/">
+                    <img className="register__logoImg" src="/logo/templify_logo_v2.svg" alt="logo"/>
+                </Link>
+
+                </div>
             <div className="register__container">
                 <h1>Create a new account</h1>
                 <form>
